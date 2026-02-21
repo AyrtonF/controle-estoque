@@ -28,5 +28,14 @@ app.get('/', (req, res) => {
 
 app.use('/api', router);
 
+// Error handler global
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ 
+    error: 'Internal server error',
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  });
+});
+
 // Para Vercel Serverless - exporta o app sem listen()
 export default app;

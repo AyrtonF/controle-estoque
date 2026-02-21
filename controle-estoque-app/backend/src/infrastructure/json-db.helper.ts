@@ -2,15 +2,24 @@
 import fs from 'fs';
 import path from 'path';
 
-const DATA_DIR = path.resolve(__dirname, '../../database');
+// Detecta se está no Vercel
 const IS_VERCEL = process.env.VERCEL === '1' || process.env.VERCEL_ENV !== undefined;
 
 // Cache em memória para ambiente serverless (Vercel)
 const memoryCache = new Map<string, any[]>();
 
+// Caminho para database - ajusta baseado no ambiente
+const DATA_DIR = IS_VERCEL 
+  ? path.join(process.cwd(), 'database')  // Vercel: usa process.cwd()
+  : path.resolve(__dirname, '../../database'); // Local: relativo
+
 // Apenas tenta criar diretório em ambiente local
 if (!IS_VERCEL && !fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch (error) {
+    console.warn('Could not create database directory:', error);
+  }
 }
 
 export class JsonDbHelper<T> {
