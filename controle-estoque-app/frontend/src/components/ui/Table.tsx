@@ -13,7 +13,7 @@ interface Column<T> {
   className?: string;
 }
 
-interface TableProps<T> {
+interface TableProps<T extends Record<string, any>> {
   data: T[];
   columns: Column<T>[];
   keyExtractor: (item: T) => string;
@@ -22,7 +22,7 @@ interface TableProps<T> {
   onExport?: () => void;
 }
 
-export function Table<T>({ 
+export function Table<T extends Record<string, any>>({ 
   data, 
   columns, 
   keyExtractor, 
@@ -40,7 +40,7 @@ export function Table<T>({
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
       <DataTable 
-        value={data} 
+        value={data as any[]} 
         emptyMessage={emptyMessage}
         responsiveLayout="scroll"
         stripedRows

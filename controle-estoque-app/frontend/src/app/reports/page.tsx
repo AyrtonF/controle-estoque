@@ -8,8 +8,31 @@ import { FileText, TrendingUp, TrendingDown, AlertCircle } from 'lucide-react';
 import { translateAction, formatDate } from '@/lib/utils';
 import { clsx } from 'clsx';
 
+interface Product {
+  id: string;
+  name: string;
+  currentStock: number;
+  minimumStockAlert: number;
+  deletedAt?: string;
+}
+
+interface AuditLog {
+  id: string;
+  action: string;
+  entityId: string;
+  timestamp: string;
+  newValue?: number;
+  previousValue?: number;
+}
+
+interface ReportData {
+  dailyChanges: AuditLog[];
+  lowStockItems: Product[];
+  totals: { entries: number; removals: number };
+}
+
 export default function ReportsPage() {
-  const [reportData, setReportData] = useState<any>({
+  const [reportData, setReportData] = useState<ReportData>({
     dailyChanges: [],
     lowStockItems: [],
     totals: { entries: 0, removals: 0 },
