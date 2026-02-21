@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { productService } from '@/infrastructure/services';
 import { ProductInput } from '@/domain/product.entity';
 
+// Força o uso do Node.js runtime para permitir acesso ao sistema de arquivos
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/products
  * Lista todos os produtos (com filtros opcionais)

@@ -2,6 +2,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { FileSystemAuditLogRepository } from '@/infrastructure/audit-log.repository';
 
+// Força o uso do Node.js runtime para permitir acesso ao sistema de arquivos
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 const auditLogRepository = new FileSystemAuditLogRepository();
 
 /**

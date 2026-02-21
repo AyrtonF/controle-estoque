@@ -2,6 +2,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stockService } from '@/infrastructure/services';
 
+// Força o uso do Node.js runtime para permitir acesso ao sistema de arquivos
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 /**
  * POST /api/products/[id]/stock
  * Adiciona ou remove estoque de um produto

@@ -10,15 +10,23 @@ export class CategoryService {
   ) {}
 
   async create(input: CategoryInput, userId: string = 'system'): Promise<Category> {
+    console.log('🔍 [CategoryService] create - Starting...');
+    console.log('📦 [CategoryService] Input:', input);
+    console.log('👤 [CategoryService] User ID:', userId);
+    
     const category: Category = {
       id: uuidv4(),
       ...input,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
+    console.log('📝 [CategoryService] Generated category:', category);
 
+    console.log('💾 [CategoryService] Calling repository.create...');
     const created = await this.categoryRepo.create(category);
+    console.log('✅ [CategoryService] Repository returned:', created);
 
+    console.log('📋 [CategoryService] Creating audit log...');
     await this.auditRepo.create({
       id: uuidv4(),
       entityType: 'category',
@@ -28,6 +36,7 @@ export class CategoryService {
       timestamp: new Date(),
       user: userId,
     });
+    console.log('✅ [CategoryService] Audit log created');
 
     return created;
   }

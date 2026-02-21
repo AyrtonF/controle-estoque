@@ -11,16 +11,24 @@ export class FileSystemCategoryRepository implements ICategoryRepository {
   }
 
   async create(category: Category): Promise<Category> {
+    console.log('🔍 [CategoryRepo] create - Starting...');
+    console.log('📦 [CategoryRepo] Input category:', category);
+    
     const categories = this.db.read();
+    console.log('📚 [CategoryRepo] Current categories:', categories.length);
     
     const serializedCategory = {
       ...category,
       createdAt: category.createdAt instanceof Date ? category.createdAt : new Date(category.createdAt),
       updatedAt: category.updatedAt instanceof Date ? category.updatedAt : new Date(category.updatedAt),
     };
+    console.log('💾 [CategoryRepo] Serialized category:', serializedCategory);
     
     categories.push(serializedCategory);
+    console.log('✏️ [CategoryRepo] Writing to database...');
     this.db.write(categories);
+    console.log('✅ [CategoryRepo] Category created successfully');
+    
     return serializedCategory;
   }
 

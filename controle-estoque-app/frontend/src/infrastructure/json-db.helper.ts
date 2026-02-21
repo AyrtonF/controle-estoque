@@ -55,12 +55,16 @@ export class JsonDbHelper<T> {
 
   read(): T[] {
     try {
+      console.log(`🔍 [JsonDbHelper] Reading ${this.fileName}...`);
+      console.log(`📂 [JsonDbHelper] File path: ${this.filePath}`);
+      
       if (!fs.existsSync(this.filePath)) {
         console.warn(`⚠️ Database file not found: ${this.fileName}. Returning empty array.`);
         return [];
       }
 
       const data = fs.readFileSync(this.filePath, 'utf-8');
+      console.log(`📄 [JsonDbHelper] File content length: ${data.length}`);
       
       if (!data || data.trim() === '') {
         console.warn(`⚠️ Database file is empty: ${this.fileName}. Returning empty array.`);
@@ -68,6 +72,7 @@ export class JsonDbHelper<T> {
       }
 
       const parsed = JSON.parse(data) as T[];
+      console.log(`✅ [JsonDbHelper] Parsed ${parsed.length} items from ${this.fileName}`);
       return parsed;
     } catch (error) {
       console.error(`❌ Error reading ${this.filePath}:`, error);
@@ -77,12 +82,18 @@ export class JsonDbHelper<T> {
 
   write(data: T[]): void {
     try {
+      console.log(`✏️ [JsonDbHelper] Writing to ${this.fileName}...`);
+      console.log(`📂 [JsonDbHelper] File path: ${this.filePath}`);
+      console.log(`📊 [JsonDbHelper] Data items count: ${data.length}`);
+      
       // Garante que o diretório existe
       if (!fs.existsSync(DATA_DIR)) {
+        console.log(`📁 [JsonDbHelper] Creating directory: ${DATA_DIR}`);
         fs.mkdirSync(DATA_DIR, { recursive: true });
       }
 
       fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2), 'utf-8');
+      console.log(`✅ [JsonDbHelper] Successfully wrote to ${this.fileName}`);
     } catch (error) {
       console.error(`❌ Error writing to ${this.filePath}:`, error);
       throw new Error(`Failed to persist data to ${this.fileName}`);
