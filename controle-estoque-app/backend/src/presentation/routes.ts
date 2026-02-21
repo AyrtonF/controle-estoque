@@ -48,4 +48,62 @@ router.get('/audit-logs', async (req, res) => {
   res.json(logs);
 });
 
+// Export/Backup Routes
+router.get('/export', async (req, res) => {
+  try {
+    const products = await productRepo.findAll();
+    const categories = await categoryRepo.findAll();
+    const auditLogs = await auditRepo.findAll();
+    
+    res.json({
+      products,
+      categories,
+      auditLogs,
+      exportedAt: new Date().toISOString(),
+      totalProducts: products.length,
+      totalCategories: categories.length,
+      totalAuditLogs: auditLogs.length
+    });
+  } catch (error) {
+    console.error('Export error:', error);
+    res.status(500).json({ error: 'Failed to export data' });
+  }
+});
+
+router.get('/backup/products', async (req, res) => {
+  try {
+    const products = await productRepo.findAll();
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=products.json');
+    res.json(products);
+  } catch (error) {
+    console.error('Backup products error:', error);
+    res.status(500).json({ error: 'Failed to backup products' });
+  }
+});
+
+router.get('/backup/categories', async (req, res) => {
+  try {
+    const categories = await categoryRepo.findAll();
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=categories.json');
+    res.json(categories);
+  } catch (error) {
+    console.error('Backup categories error:', error);
+    res.status(500).json({ error: 'Failed to backup categories' });
+  }
+});
+
+router.get('/backup/audit-logs', async (req, res) => {
+  try {
+    const logs = await auditRepo.findAll();
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=audit-logs.json');
+    res.json(logs);
+  } catch (error) {
+    console.error('Backup audit logs error:', error);
+    res.status(500).json({ error: 'Failed to backup audit logs' });
+  }
+});
+
 export { router };
