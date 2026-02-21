@@ -1,0 +1,29 @@
+
+@import "tailwindcss";
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
+
+@theme {
+  --color-nautico-red: #C8102E;
+  --color-nautico-dark: #8A0F1E;
+  --color-nautico-gray: #F4F4F4;
+  --color-nautico-neutral: #E5E5E5;
+  --color-nautico-black: #111111;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--color-nautico-gray);
+  color: var(--color-nautico-black);
+}
+
+/* PrimeReact Theme Customization */
+:root {
+  --primary-color: #C8102E;
+  --primary-color-text: #ffffff;
+}
+
+.p-component {
+  font-family: inherit;
+}
