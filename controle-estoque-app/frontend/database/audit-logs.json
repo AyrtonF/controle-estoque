@@ -1,0 +1,37 @@
+[
+  {
+    "id": "02f18f8e-f87c-40bd-ab17-f77c7e662ddc",
+    "entityType": "category",
+    "entityId": "acb9a495-aff4-4f94-8cf4-2e25ce982c27",
+    "action": "CREATE",
+    "newValue": {
+      "id": "acb9a495-aff4-4f94-8cf4-2e25ce982c27",
+      "name": "afasfs",
+      "parentId": null,
+      "createdAt": "2026-02-21T15:17:05.428Z",
+      "updatedAt": "2026-02-21T15:17:05.428Z"
+    },
+    "timestamp": "2026-02-21T15:17:05.435Z",
+    "user": "system"
+  },
+  {
+    "id": "d7cd95ed-c7d5-43d1-be24-c2169de46180",
+    "entityType": "product",
+    "entityId": "7ba47baa-7466-49ec-939d-0e479deaa006",
+    "action": "CREATE",
+    "newValue": {
+      "id": "7ba47baa-7466-49ec-939d-0e479deaa006",
+      "name": "qweqe",
+      "description": "312313",
+      "categoryId": "acb9a495-aff4-4f94-8cf4-2e25ce982c27",
+      "minimumStockAlert": 12313,
+      "currentStock": 21331,
+      "totalRemoved": 0,
+      "createdAt": "2026-02-21T15:17:13.474Z",
+      "updatedAt": "2026-02-21T15:17:13.474Z",
+      "lastModifiedBy": "system"
+    },
+    "timestamp": "2026-02-21T15:17:13.477Z",
+    "user": "system"
+  }
+]

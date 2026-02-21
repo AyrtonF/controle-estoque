@@ -1,0 +1,4 @@
+# Ignora todos os arquivos JSON exceto os templates
+# Os arquivos JSON são criados automaticamente se não existirem
+
+# Você pode remover uma das linhas abaixo para commitar dados iniciais se desejar

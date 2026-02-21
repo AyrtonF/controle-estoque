@@ -1,0 +1,14 @@
+[
+  {
+    "id": "7ba47baa-7466-49ec-939d-0e479deaa006",
+    "name": "qweqe",
+    "description": "312313",
+    "categoryId": "acb9a495-aff4-4f94-8cf4-2e25ce982c27",
+    "minimumStockAlert": 12313,
+    "currentStock": 21331,
+    "totalRemoved": 0,
+    "createdAt": "2026-02-21T15:17:13.474Z",
+    "updatedAt": "2026-02-21T15:17:13.474Z",
+    "lastModifiedBy": "system"
+  }
+]
