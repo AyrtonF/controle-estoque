@@ -16,6 +16,10 @@ build/
 *.tsbuildinfo
 .vercel
 
+# Database files - COMENTADO para permitir commit
+# IMPORTANTE: Arquivos JSON devem ser commitados para Vercel ler
+# database/*.json
+
 # IDE
 .vscode/
 .idea/
